@@ -1,10 +1,16 @@
-package src.controller;
+package controller;
 
+
+import java.util.Iterator;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import src.dao.Contractor;
-import src.interfaces.ContractorRepository;
+
+import dao.Contractor;
+import dao.Tender;
+import interfaces.ContractorRepository;
+import interfaces.TenderRepository;
+
 
 public class CreateRandomContractorsAppl {
 
@@ -16,13 +22,15 @@ public class CreateRandomContractorsAppl {
 		
 		AbstractApplicationContext ctx = new FileSystemXmlApplicationContext("beans.xml");
 		ContractorRepository repository = (ContractorRepository) ctx.getBean("contractors");
-		createContractors(repository);
-		/*System.out.println(repository.getContractor(10));
-		System.out.println(repository.iterator().next());
-		Iterator<Contractor> it = repository.iterator();
+		TenderRepository tendRepository = (TenderRepository) ctx.getBean("tenders");
+		//createContractors(repository);
+		System.out.println(tendRepository.getTender(1));
+		//System.out.println(repository.getContractor(10));
+		//System.out.println(repository.iterator().next());
+		Iterator<Tender> it = tendRepository.iterator();
 		while(it.hasNext()){
 			System.out.println(it.next());
-		}*/
+		}
 		ctx.close();
 	}
 
